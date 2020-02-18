@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>叔叔的幸運數字</title>
+    <style>
+        #wrap{
+            width:70%;
+            margin:200px auto 0;
+            text-align:center;
+        }
+        #btn{
+            width:150px;
+            height:50px;
+            outline:none;
+            border:none;
+            background-color: #00a0af;
+            color:white;
+            font-size:16px;
+            border-radius: 10px;
+        }
+        #msg{
+            padding:30px;
+            font-size:20px;
+        }
+        .ball{
+            width:45px;
+            height:45px;
+            border-radius: 50%;
+            background-color: pink;
+            display:inline-block;
+            line-height:45px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <button id="btn">給我3個數字</button>
+        <div id="msg">
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <div class="ball"></div>
+        </div>
+    </div>
+    <script>
+        window.onload = function(){
+            var btn = document.getElementById("btn");
+            var ball = document.getElementsByClassName("ball");
+            var arr = [];
+            btn.onclick=function(){
+                for(var i = 0 ; i<3 ; i++){
+                    var random = parseInt(Math.random()*39+1);
+                    arr.push(random);
+                    for(var j=i+1;j<arr.length;j++){
+                        if(random === arr[j]){
+                            arr.splice(i,1);
+                            j--;
+                        }
+                    }
+                }
+                console.log(arr);
+                for(var k=0;k<ball.length;k++){
+                    ball[k].innerText=arr[k];
+                }
+
+            }
+        }
+
+    </script>
+</body>
+</html>
